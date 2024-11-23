@@ -12,10 +12,10 @@ _offline='false'
 _proj="hip"
 _pkgname=evm-deployer
 pkgname="${_pkgname}-git"
-pkgver="0.0.0.0.0.0.0.0.0.0.0.0.1".r2.g"17462bf25f990eeb255a2b6831d80e9271d170cd"
+pkgver="0.0.0.0.0.0.0.0.0.1.1.1".r2.g"b58f623fe6d6c3cb73ede2a111af3d39b3702313"
 pkgrel=1
 _pkgdesc=(
-  "EVM wallet (and tools)."
+  "Solidity contracts EVM networks deployer."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
