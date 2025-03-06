@@ -1,7 +1,28 @@
 # SPDX-License-Identifier: AGPL-3.0
+
+#    ----------------------------------------------------------------------
+#    Copyright © 2024, 2025  Pellegrino Prevete
 #
-# Maintainer:  Truocolo <truocolo@aol.com>
-# Maintainer:  Pellegrino Prevete <pellegrinoprevete@gmail.com>
+#    All rights reserved
+#    ----------------------------------------------------------------------
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Maintainer: Truocolo <truocolo@aol.com>
+# Maintainer: Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+# Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
+# Maintainer: Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
 _node='nodejs'
 _os="$( \
@@ -19,7 +40,7 @@ _pkgdesc=(
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
-  any
+  'any'
 )
 _gl="gitlab.com"
 _gh="github.com"
@@ -29,9 +50,10 @@ _local="file://${HOME}/${_pkgname}"
 url="${_host}/${_ns}/${_pkgname}"
 _gh_api="https://api.${_gh}/repos/${_ns}/${_pkgname}"
 license=(
-  AGPL3
+  'AGPL3'
 )
 depends=(
+  "evm-chains-info"
   "evm-wallet"
   "libcrash-bash"
   "libcrash-js"
@@ -39,16 +61,17 @@ depends=(
   "solidity-compiler"
 )
 makedepends=(
-  make
+  'make'
 )
 checkdepends=(
-  shellcheck
+  'shellcheck'
 )
 optdepends=(
 )
-[[ "${_os}" == 'Android' ]] && \
+if [[ "${_os}" == 'Android' ]]; then
   optdepends+=(
   )
+fi
 provides=(
   "${_pkgname}=${pkgver}"
 )
@@ -60,27 +83,29 @@ groups=(
  "${_proj}-git"
 )
 _url="${url}"
-[[ "${_offline}" == true ]] && \
+if [[ "${_offline}" == true ]]; then
   _url="${_local}"
+fi
 source=()
 _branch="master"
-[[ "${_git}" == true ]] && \
+if [[ "${_git}" == true ]]; then
   makedepends+=(
-    git
-  ) && \
+    'git'
+  )
   source+=(
     "${_pkgname}-${_branch}::git+${_url}#branch=${_branch}"
   )
-[[ "${_git}" == false ]] && \
+elif [[ "${_git}" == false ]]; then
   makedepends+=(
-    curl
-    jq
-  ) && \
+    'curl'
+    'jq'
+  )
   source+=(
     "${_pkgname}.tar.gz::${_url}/archive/refs/heads/${_branch}.tar.gz"
   )
+fi
 sha256sums=(
-  SKIP
+  'SKIP'
 )
 
 _nth() {
@@ -192,3 +217,4 @@ package() {
 }
 
 # vim: ft=sh syn=sh et
+sha256sums=('4b9b10fd75c481f878777ad81c1ee68cf8d82f3469e0abb4ec7e01dfa9288b6f')
