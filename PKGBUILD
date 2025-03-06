@@ -55,6 +55,7 @@ license=(
 depends=(
   "evm-chains-info"
   "evm-wallet"
+  "jq"
   "libcrash-bash"
   "libcrash-js"
   "${_node}-ethers"
